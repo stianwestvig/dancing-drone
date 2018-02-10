@@ -8,13 +8,6 @@ function takeOff(drone) {
     }
 }
 
-function landing(drone) {
-    return {
-        delay: 1000,
-        task: () => drone.land()
-    }
-}
-
 function moveLeft(drone) {
     return {
         delay: 1000,
@@ -57,9 +50,9 @@ function spin(drone) {
 
 function forward(drone) {
     return {
-        delay: 1000,
+        delay: 2000,
         task: () => {
-            drone.forward({steps: 5});
+            drone.forward({steps: 15});
             drone.flatTrim();
         }
     }
@@ -67,9 +60,9 @@ function forward(drone) {
 
 function backward(drone) {
     return {
-        delay: 1000,
+        delay: 2000,
         task: () => {
-            drone.backward({steps: 5});
+            drone.backward({steps: 15});
             drone.flatTrim();
         }
     }
@@ -77,9 +70,9 @@ function backward(drone) {
 
 function up(drone) {
     return {
-        delay: 1000,
+        delay: 2000,
         task: () => {
-            drone.up({speed: 200, steps: 100});
+            drone.up({speed: 50, steps: 20});
             drone.flatTrim();
         }
     }
@@ -87,9 +80,9 @@ function up(drone) {
 
 function down(drone) {
     return {
-        delay: 1000,
+        delay: 2000,
         task: () => {
-            drone.down({speed: 200, steps: 100});
+            drone.down({speed: 50, steps: 20});
             drone.flatTrim();
         }
     }
@@ -101,40 +94,35 @@ function getMoves (drone) {
         {
             meta: { name: 'swagger'},
             instructions: [
-                takeOff(drone),
                 moveLeft(drone),
                 moveRight(drone),
                 moveLeft(drone),
                 moveRight(drone),
-                spin(drone),
-                landing(drone)]
+                spin(drone)
+            ]
         },
         {
             meta: { name: 'flip'},
             instructions: [
-                takeOff(drone),
                 moveLeft(drone),
                 moveRight(drone),
                 frontFlip(drone),
-                landing(drone)
+                spin(drone)
             ]
         },
         {
             meta: { name: 'rap'},
             instructions: [
-                takeOff(drone),
                 moveLeft(drone),
                 moveRight(drone),
                 moveLeft(drone),
                 moveRight(drone),
                 up(drone),
                 down(drone),
-                up(drone),
-                down(drone),
-                up(drone),
-                down(drone),
-                spin(drone),
-                landing(drone)]
+                forward(drone),
+                backward(drone),
+                spin(drone)
+            ]
         }
     ];
 }
