@@ -1,6 +1,5 @@
 const Brain = require('./brain');
 // import music
-const moves = require('./moves');
 
 // TODO: connect to drone
 
