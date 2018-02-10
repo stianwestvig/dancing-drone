@@ -1,6 +1,6 @@
 // import brain
 // import music
-// import moves
+const moves = require('./moves');
 
 // todo: connect to drone
 
