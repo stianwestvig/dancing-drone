@@ -15,7 +15,28 @@ class Brain {
         this.music = music;
     }
 
-    randomStrategy() {
+    test(arg) {
+        this['greet'](arg);
+    }
+
+    greet(name='World') {
+        console.log('Hello, ' + name);
+        throw new Error("Die for deubg reasons...");
+    }
+
+    /*
+            STRAGEGIES BEGIN HERE
+     */
+
+    randomOne() {
+        /*
+            Returns one random move from the list of moves.
+         */
+        return this.moves[Math.floor(Math.random()*this.moves.length)];
+    }
+
+    randomSequence() {
+        // WIP: Randomize an array of promises, etc. ...
         shuffle(this.moves);
         return this.moves.reduce((promiseChain, currentMove) => {
             return promiseChain.then(chainResults =>
@@ -26,15 +47,6 @@ class Brain {
         }, Promise.resolve([])).then(arrayOfResults => {
             // Do something with all results
         });
-    }
-
-    test(arg) {
-        this['greet'](arg);
-    }
-
-    greet(name='World') {
-        console.log('Hello, ' + name);
-        throw new Error("Die for deubg reasons...");
     }
 
 }
