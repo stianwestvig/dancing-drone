@@ -1,6 +1,6 @@
-function takeOff(drone) {
+function takeOff(drone, quarter) {
     return {
-        delay: 1000,
+        delay: quarter * 4,
         task: () => {
             drone.takeOff();
             drone.flatTrim();
@@ -8,11 +8,9 @@ function takeOff(drone) {
     }
 }
 
-function moveLeft(drone, bpm = 1000) {
-  const steps = bpm / 100;
-  console.log('LEFT steps', steps);
+function moveLeft(drone, quarter) {
     return {
-        delay: bpm,
+        delay: quarter,
         task: () => {
             drone.left({steps: steps, speed: 80 });
             drone.flatTrim();
@@ -20,11 +18,9 @@ function moveLeft(drone, bpm = 1000) {
     }
 }
 
-function moveRight(drone,  bpm = 1000) {
-  const steps = bpm / 100;
-  console.log('RIGHT speed: steps', steps);
+function moveRight(drone, quarter) {
     return {
-        delay: 0,
+        delay: quarter,
         task: () => {
             drone.right({steps: steps, speed: 80 });
             drone.flatTrim();
@@ -32,9 +28,9 @@ function moveRight(drone,  bpm = 1000) {
     }
 }
 
-function frontFlip(drone) {
+function frontFlip(drone, quarter) {
     return {
-        delay: 1000,
+        delay: quarter,
         task: () => {
             drone.frontFlip({steps: 5});// XXX:
             drone.flatTrim();
@@ -42,9 +38,9 @@ function frontFlip(drone) {
     }
 };
 
-function spin(drone) {
+function spin(drone, quarter) {
     return {
-        delay: 1000,
+        delay: quarter,
         task: () => {
             drone.clockwise({speed: 200, steps: 100});
             drone.flatTrim();
@@ -52,9 +48,9 @@ function spin(drone) {
     }
 };
 
-function forward(drone, bpm) {
+function forward(drone, quarter) {
     return {
-        delay: bpm,
+        delay: quarter,
         task: () => {
             drone.forward({steps: 5});
             drone.flatTrim();
@@ -62,9 +58,9 @@ function forward(drone, bpm) {
     }
 };
 
-function backward(drone, bpm) {
+function backward(drone, quarter) {
     return {
-        delay: bpm,
+        delay: quarter,
         task: () => {
             drone.backward({steps: 5});
             drone.flatTrim();
@@ -72,9 +68,9 @@ function backward(drone, bpm) {
     }
 };
 
-function up(drone) {
+function up(drone, quarter) {
     return {
-        delay: 2000,
+        delay: quarter,
         task: () => {
             drone.up({speed: 50, steps: 20});
             drone.flatTrim();
@@ -82,9 +78,9 @@ function up(drone) {
     }
 };
 
-function down(drone) {
+function down(drone, quarter) {
     return {
-        delay: 2000,
+        delay: quarter,
         task: () => {
             drone.down({speed: 50, steps: 20});
             drone.flatTrim();
@@ -92,9 +88,9 @@ function down(drone) {
     }
 };
 
-function nod(drone, bpm = 129, reverse = false) {
+function nod(drone, quarter, reverse = false) {
     return {
-        delay: 300,
+        delay: quarter,
         task: () => {
           if (reverse) {
             drone.backward({steps: 5, speed: 100 });
@@ -123,52 +119,52 @@ function getRelativePercentage(precentage, bpm) {
 }
 
 
-function getMoves (drone, bpm) {
+function getMoves (drone, quarter) {
     return [
       {
           meta: { name: 'flat-eric'},
           instructions:[
-              nod(drone, bpm),
-              nod(drone, bpm, true),
-              nod(drone, bpm),
-              nod(drone, bpm, true),
-              nod(drone, bpm),
-              nod(drone, bpm, true),
-              nod(drone, bpm),
-              nod(drone, bpm, true),
-              nod(drone, bpm),
+              nod(drone, quarter),
+              nod(drone, quarter, true),
+              nod(drone, quarter),
+              nod(drone, quarter, true),
+              nod(drone, quarter),
+              nod(drone, quarter, true),
+              nod(drone, quarter),
+              nod(drone, quarter, true),
+              nod(drone, quarter),
           ]
       },
         {
             meta: { name: 'swagger'},
             instructions:[
-                moveRight(drone, bpm),
-                moveLeft(drone, bpm),
-                moveRight(drone, bpm),
+                moveRight(drone, quarter),
+                moveLeft(drone, quarter),
+                moveRight(drone, quarter),
 
             ]
         },
         {
             meta: { name: 'flip'},
             instructions: [
-                moveLeft(drone),
-                moveRight(drone),
-                frontFlip(drone),
-                spin(drone)
+                moveLeft(drone, quarter),
+                moveRight(drone, quarter),
+                frontFlip(drone, quarter),
+                spin(drone, quarter)
             ]
         },
         {
             meta: { name: 'rap'},
             instructions: [
-                moveLeft(drone),
-                moveRight(drone),
-                moveLeft(drone),
-                moveRight(drone),
-                up(drone),
-                down(drone),
-                forward(drone),
-                backward(drone),
-                spin(drone)
+                moveLeft(drone, quarter),
+                moveRight(drone, quarter),
+                moveLeft(drone, quarter),
+                moveRight(drone, quarter),
+                up(drone, quarter),
+                down(drone, quarter),
+                forward(drone, quarter),
+                backward(drone, quarter),
+                spin(drone, quarter)
             ]
         }
     ];

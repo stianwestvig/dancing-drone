@@ -6,7 +6,8 @@ let mambo_id;
 !!(process.argv[2]) ? mambo_id = process.argv[2] : mambo_id = ['Mambo_612553', 'Mambo_509529'];
 
 const rollingSpider = new RollingSpider({uuid: mambo_id});
-const moves = require('./moves')(rollingSpider, bpm);
+const quarter = 465; // flat eric
+const moves = require('./moves')(rollingSpider, quarter);
 const DeepThought = new Brain(moves, {});
 
 rollingSpider.connect(() => {
