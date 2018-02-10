@@ -8,21 +8,25 @@ function takeOff(drone) {
     }
 }
 
-function moveLeft(drone, steps) {
+function moveLeft(drone, bpm = 1000) {
+  const steps = bpm / 100;
+  console.log('LEFT steps', steps);
     return {
-        delay: 100,
+        delay: bpm,
         task: () => {
-            drone.left({steps});
+            drone.left({steps: steps, speed: 80 });
             drone.flatTrim();
         }
     }
 }
 
-function moveRight(drone) {
+function moveRight(drone,  bpm = 1000) {
+  const steps = bpm / 100;
+  console.log('RIGHT speed: steps', steps);
     return {
-        delay: 1000,
+        delay: 0,
         task: () => {
-            drone.right({steps: 5});
+            drone.right({steps: steps, speed: 80 });
             drone.flatTrim();
         }
     }
@@ -32,7 +36,7 @@ function frontFlip(drone) {
     return {
         delay: 1000,
         task: () => {
-            drone.frontFlip({steps: 5});
+            drone.frontFlip({steps: 5});// XXX:
             drone.flatTrim();
         }
     }
@@ -48,21 +52,21 @@ function spin(drone) {
     }
 };
 
-function forward(drone, steps) {
+function forward(drone, bpm) {
     return {
-        delay: 50,
+        delay: bpm,
         task: () => {
-            drone.forward({steps});
+            drone.forward({steps: 5});
             drone.flatTrim();
         }
     }
 };
 
-function backward(drone) {
+function backward(drone, bpm) {
     return {
-        delay: 2000,
+        delay: bpm,
         task: () => {
-            drone.backward({steps: 15});
+            drone.backward({steps: 5});
             drone.flatTrim();
         }
     }
@@ -88,6 +92,21 @@ function down(drone) {
     }
 };
 
+function nod(drone, bpm = 129, reverse = false) {
+    return {
+        delay: 300,
+        task: () => {
+          if (reverse) {
+            drone.backward({steps: 5, speed: 100 });
+            drone.flatTrim();
+          } else {
+            drone.forward({steps: 5, speed: 100 });
+            drone.flatTrim();
+          }
+        }
+    }
+}
+
 
 function getBeatsPerMilliseconds(bpm) {
     return (bpm / 1000) / 60;
@@ -106,11 +125,27 @@ function getRelativePercentage(precentage, bpm) {
 
 function getMoves (drone, bpm) {
     return [
+      {
+          meta: { name: 'flat-eric'},
+          instructions:[
+              nod(drone, bpm),
+              nod(drone, bpm, true),
+              nod(drone, bpm),
+              nod(drone, bpm, true),
+              nod(drone, bpm),
+              nod(drone, bpm, true),
+              nod(drone, bpm),
+              nod(drone, bpm, true),
+              nod(drone, bpm),
+          ]
+      },
         {
             meta: { name: 'swagger'},
-            instructions: [
-                forward(drone, 20),
-                moveLeft(drone, 20)
+            instructions:[
+                moveRight(drone, bpm),
+                moveLeft(drone, bpm),
+                moveRight(drone, bpm),
+
             ]
         },
         {
