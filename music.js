@@ -72,7 +72,7 @@ var calcTempo = function (buffer) {
   }
   var mt = new MusicTempo(audioData);
 
-  console.log(mt.tempo); // catch bpm
+  //console.log(mt.tempo); // catch bpm
   //console.log(mt.beats);
 
   bpm = mt.tempo;
