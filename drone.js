@@ -13,7 +13,7 @@ DeepThought.test('World');
 
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
-const rollingSpider = new RollingSpider();
+const rollingSpider = new RollingSpider({uuid: ['Mambo_612553', 'Mambo_509529']});
 
 rollingSpider.connect(() => {
 
