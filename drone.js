@@ -31,6 +31,8 @@ rollingSpider.connect(() => {
     // listen for the "keypress" event
     process.stdin.on('keypress', function (ch, key) {
         if (key.ctrl && key.name === 'c') {
+            temporal.clear();
+            rollingSpider.land()
             process.exit(); // eslint-disable-line no-process-exit
           }
           if (key && key.name == 'space') {
