@@ -12,7 +12,7 @@ function moveLeft(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.left({steps: steps, speed: 80 });
+            drone.left({steps: quarter / 93, speed: 80 });
             drone.flatTrim();
         }
     }
@@ -22,7 +22,7 @@ function moveRight(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.right({steps: steps, speed: 80 });
+            drone.right({steps: quarter / 93, speed: 80 });
             drone.flatTrim();
         }
     }
@@ -32,7 +32,7 @@ function frontFlip(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.frontFlip({steps: 5});// XXX:
+            drone.frontFlip({steps: quarter / 93 });
             drone.flatTrim();
         }
     }
@@ -42,7 +42,7 @@ function spin(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.clockwise({speed: 200, steps: 100});
+            drone.clockwise({speed: 100, steps: quarter / 93});
             drone.flatTrim();
         }
     }
@@ -52,7 +52,7 @@ function forward(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.forward({steps: 5});
+            drone.forward({steps: quarter / 93});
             drone.flatTrim();
         }
     }
@@ -62,7 +62,7 @@ function backward(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.backward({steps: 5});
+            drone.backward({steps: quarter / 93});
             drone.flatTrim();
         }
     }
@@ -72,7 +72,7 @@ function up(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.up({speed: 50, steps: 20});
+            drone.up({speed: 100, steps: quarter / 93});
             drone.flatTrim();
         }
     }
@@ -82,7 +82,7 @@ function down(drone, quarter) {
     return {
         delay: quarter,
         task: () => {
-            drone.down({speed: 50, steps: 20});
+            drone.down({speed: 100, steps: quarter / 93});
             drone.flatTrim();
         }
     }
@@ -93,12 +93,21 @@ function nod(drone, quarter, reverse = false) {
         delay: quarter,
         task: () => {
           if (reverse) {
-            drone.backward({steps: 5, speed: 100 });
+            drone.backward({steps: quarter / 93, speed: 100 });
             drone.flatTrim();
           } else {
-            drone.forward({steps: 5, speed: 100 });
+            drone.forward({steps: quarter / 93, speed: 100 });
             drone.flatTrim();
           }
+        }
+    }
+}
+
+function pause(drone, quarter) {
+    return {
+        delay: quarter,
+        task: () => {
+          drone.flatTrim();
         }
     }
 }
@@ -124,15 +133,31 @@ function getMoves (drone, quarter) {
       {
           meta: { name: 'flat-eric'},
           instructions:[
-              nod(drone, quarter),
-              nod(drone, quarter, true),
-              nod(drone, quarter),
-              nod(drone, quarter, true),
-              nod(drone, quarter),
-              nod(drone, quarter, true),
-              nod(drone, quarter),
-              nod(drone, quarter, true),
-              nod(drone, quarter),
+              forward(drone, quarter),
+              backward(drone, quarter),
+              forward(drone, quarter),
+              backward(drone, quarter),
+
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+
+              up(drone, quarter),
+              down(drone, quarter),
+              up(drone, quarter),
+              down(drone, quarter),
+
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              frontFlip(drone, quarter * 2)
           ]
       },
         {
