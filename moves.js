@@ -1,18 +1,27 @@
-const RollingSpider = require('rolling-spider');
-const rollingSpider = new RollingSpider();
 
-const takeOff = {
-    delay: 1000,
-    task: () => {
-        rollingSpider.takeOff();
-        rollingSpider.flatTrim();
-    }
-};
+function upAndDown(drone) {
+    return [
+        {
+            delay: 1000,
+            task: () => {
+                drone.takeOff();
+                drone.flatTrim();
+            }
+        },
+        {
+            delay: 1000,
+            task: () => drone.land()
+        }
+    ]
+}
 
-const moves = [{
-  meta: {},
-  instructions: takeOff
-}];
+
+function getMoves (drone) {
+    return [{
+        meta: {},
+        instructions: upAndDown(drone)
+    }];
+}
 
 
-module.exports = moves;
+module.exports = getMoves;
