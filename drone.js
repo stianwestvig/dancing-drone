@@ -36,7 +36,8 @@ rollingSpider.connect(() => {
     rollingSpider.startPing();
     rollingSpider.flatTrim();
 
-    DeepThought.strategize('randomOne');
+    //DeepThought.strategize('randomOne');
+    DeepThought.strategize('specificOne', 0);
     console.log(DeepThought.answer());
 
     console.log('Connected to drone', rollingSpider.name);
@@ -48,7 +49,10 @@ rollingSpider.connect(() => {
                 rollingSpider.flatTrim();
             }
         }].concat(
-        -   (DeepThought.answer().instructions).map((instruction) => { return instruction; }).concat(
+          (DeepThought.answer().instructions).map((instruction) => {
+            console.log('INSTRUCTION', instruction);
+            return instruction;
+          }).concat(
             {
                 delay: 1000,
                 task: () => rollingSpider.land()

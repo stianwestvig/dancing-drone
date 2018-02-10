@@ -8,11 +8,11 @@ function takeOff(drone) {
     }
 }
 
-function moveLeft(drone) {
+function moveLeft(drone, steps) {
     return {
-        delay: 1000,
+        delay: 100,
         task: () => {
-            drone.left({steps: 5});
+            drone.left({steps});
             drone.flatTrim();
         }
     }
@@ -48,11 +48,11 @@ function spin(drone) {
     }
 };
 
-function forward(drone) {
+function forward(drone, steps) {
     return {
-        delay: 2000,
+        delay: 50,
         task: () => {
-            drone.forward({steps: 15});
+            drone.forward({steps});
             drone.flatTrim();
         }
     }
@@ -94,11 +94,9 @@ function getMoves (drone) {
         {
             meta: { name: 'swagger'},
             instructions: [
-                moveLeft(drone),
-                moveRight(drone),
-                moveLeft(drone),
-                moveRight(drone),
-                spin(drone)
+                forward(drone, 20),
+                moveLeft(drone, 20),
+                
             ]
         },
         {
