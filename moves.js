@@ -133,9 +133,10 @@ function getMoves (drone, quarter) {
       {
           meta: { name: 'flat-eric'},
           instructions:[
+              // first
               forward(drone, quarter),
               backward(drone, quarter),
-              forward(drone, quarter),
+              backward(drone, quarter),
               backward(drone, quarter),
 
               moveLeft(drone, quarter),
@@ -148,16 +149,57 @@ function getMoves (drone, quarter) {
               up(drone, quarter),
               down(drone, quarter),
 
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              frontFlip(drone, quarter * 2),
+
+
+              // second
+              forward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+
               moveLeft(drone, quarter),
               moveRight(drone, quarter),
               moveLeft(drone, quarter),
               moveRight(drone, quarter),
 
+              up(drone, quarter),
+              down(drone, quarter),
+              up(drone, quarter),
+              down(drone, quarter),
+
               forward(drone, quarter / 2),
               backward(drone, quarter / 2),
               forward(drone, quarter / 2),
               backward(drone, quarter / 2),
-              frontFlip(drone, quarter * 2)
+              frontFlip(drone, quarter * 2),
+
+
+              // third
+              forward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+
+              up(drone, quarter),
+              down(drone, quarter),
+              up(drone, quarter),
+              down(drone, quarter),
+
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              frontFlip(drone, quarter * 2),
           ]
       },
         {
