@@ -36,7 +36,8 @@ rollingSpider.connect(() => {
     rollingSpider.startPing();
     rollingSpider.flatTrim();
 
-    DeepThought.strategize('randomOne');
+    //DeepThought.strategize('randomOne');
+    DeepThought.strategize('specificOne', 0);
     //console.log(DeepThought.answer());
 
     console.log('Connected to drone', rollingSpider.name);
