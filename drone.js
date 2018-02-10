@@ -8,7 +8,7 @@ const Brain = require('./brain');
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
 const music = require('./music');
-console.log(music);
+//console.log(music);
 
 // Arg handling
 /*
@@ -23,7 +23,7 @@ const moves = require('./moves')(rollingSpider);
 
 // TODO: let brain choose move based on music
 //       Inputs to brain: moves, music
-const DeepThought = new Brain(moves, music.stream);
+const DeepThought = new Brain(moves, music.music);
 //DeepThought.test('World');
 
 
@@ -37,7 +37,7 @@ rollingSpider.connect(() => {
     rollingSpider.flatTrim();
 
     DeepThought.strategize('randomOne');
-    console.log(DeepThought.answer());
+    //console.log(DeepThought.answer());
 
     console.log('Connected to drone', rollingSpider.name);
     temporal.queue([
@@ -48,7 +48,7 @@ rollingSpider.connect(() => {
                 rollingSpider.flatTrim();
             }
         }].concat(
-        -   (DeepThought.answer().instructions).map((instruction) => { return instruction; }).concat(
+            (DeepThought.answer().instructions).map((instruction) => { return instruction; }).concat(
             {
                 delay: 1000,
                 task: () => rollingSpider.land()

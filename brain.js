@@ -13,6 +13,7 @@ class Brain {
         this.moves = moves;
         this.music = music;
         this.result = [];
+        console.log(music.bpm);
     }
 
     strategize(strategy, arg='') {
