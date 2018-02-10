@@ -82,7 +82,7 @@ var data = fs.readFileSync('./flying.mp3');
 var context = new AudioContext();
 
 context.decodeAudioData(data, calcTempo);
-bpm = 169.975;
+bpm = 129;
 
 module.exports = {
 	playerHandler,

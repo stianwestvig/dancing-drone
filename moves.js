@@ -89,14 +89,23 @@ function down(drone) {
 };
 
 
-function getMoves (drone) {
+function getRelativeDelay(delay, bpm) {
+    return ((delay * 1000) * 60) / bpm;
+}
+
+
+function getRelativePercentage(precentage, bpm) {
+    return precentage;
+}
+
+
+function getMoves (drone, bpm) {
     return [
         {
             meta: { name: 'swagger'},
             instructions: [
                 forward(drone, 20),
-                moveLeft(drone, 20),
-                
+                moveLeft(drone, 20)
             ]
         },
         {
