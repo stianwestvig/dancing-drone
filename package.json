@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/stianwestvig/dancing-drone#readme",
   "dependencies": {
+    "audio-analyser": "^1.0.2",
     "rolling-spider": "^1.7.0",
     "temporal": "^0.6.0"
   }
