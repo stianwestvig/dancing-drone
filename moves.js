@@ -200,6 +200,52 @@ function getMoves (drone, quarter) {
               forward(drone, quarter / 2),
               backward(drone, quarter / 2),
               frontFlip(drone, quarter * 2),
+
+
+              // fourth
+              forward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+
+              up(drone, quarter),
+              down(drone, quarter),
+              up(drone, quarter),
+              down(drone, quarter),
+
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              frontFlip(drone, quarter * 2),
+
+
+              // fifth
+              forward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+              backward(drone, quarter),
+
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+              moveLeft(drone, quarter),
+              moveRight(drone, quarter),
+
+              up(drone, quarter),
+              down(drone, quarter),
+              up(drone, quarter),
+              down(drone, quarter),
+
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              forward(drone, quarter / 2),
+              backward(drone, quarter / 2),
+              frontFlip(drone, quarter * 2),
           ]
       },
         {
