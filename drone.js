@@ -40,28 +40,6 @@ rollingSpider.connect(() => {
     console.log('Connected to drone', rollingSpider.name);
     temporal.queue(
         (DeepThought.answer().instructions).map((instruction) => { return instruction; })
-        /*{
-          delay: 1000,
-          task: () => {
-            rollingSpider.takeOff();
-            rollingSpider.flatTrim();
-          }
-        },
-        {
-          delay: 1000,
-          task: () => rollingSpider.forward({steps: 12})
-        },
-        {
-          delay: 1000,
-          task: () => rollingSpider.land()
-        }]
-        /*{
-            delay: 1000,
-            task: () => {
-                temporal.clear();
-                process.exit(0);
-            }
-        }*/
     );
   });
 });
