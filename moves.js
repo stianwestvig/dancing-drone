@@ -89,6 +89,11 @@ function down(drone) {
 };
 
 
+function getBeatsPerMilliseconds(bpm) {
+    return (bpm / 1000) / 60;
+}
+
+
 function getRelativeDelay(delay, bpm) {
     return ((delay * 1000) * 60) / bpm;
 }
