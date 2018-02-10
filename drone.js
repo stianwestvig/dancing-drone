@@ -8,7 +8,6 @@ const Brain = require('./brain');
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
 const music = require('./music');
-console.log(music);
 
 // Arg handling
 /*
