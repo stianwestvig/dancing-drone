@@ -1,11 +1,13 @@
-// import brain
+const Brain = require('./brain');
 // import music
 const moves = require('./moves');
 
-// todo: connect to drone
+// TODO: connect to drone
 
-// todo: let brain choose move based on music
-
+// TODO: let brain choose move based on music
+//       Inputs to brain: strategy, moves, music
+const DeepThought = new Brain('random', [], {});
+DeepThought.test('World');
 
 // drone 1: Mambo_612553
 
