@@ -15,9 +15,9 @@ class Brain {
         this.result = [];
     }
 
-    strategize(strategy) {
+    strategize(strategy, arg='') {
         console.log('Running strategy' + strategy);
-        if (!!this[strategy]) this.result = this[strategy](''); else throw new Error(strategy + ': Not a valid strategy.');
+        if (!!this[strategy]) this.result = this[strategy](arg); else throw new Error(strategy + ': Not a valid strategy.');
     }
 
     answer() {
@@ -33,6 +33,10 @@ class Brain {
             Returns one random move from the list of moves.
         */
         return this.moves[Math.floor(Math.random()*this.moves.length)];
+    }
+
+    specificOne(index) {
+      return this.moves[index];
     }
 
     randomSequence() {
