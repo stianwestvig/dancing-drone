@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/stianwestvig/dancing-drone/issues"
   },
-  "homepage": "https://github.com/stianwestvig/dancing-drone#readme"
+  "homepage": "https://github.com/stianwestvig/dancing-drone#readme",
+  "dependencies": {
+    "rolling-spider": "^1.7.0",
+    "temporal": "^0.6.0"
+  }
 }
