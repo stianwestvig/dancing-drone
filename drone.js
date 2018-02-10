@@ -6,7 +6,7 @@ const moves = require('./moves');
 
 // TODO: let brain choose move based on music
 //       Inputs to brain: strategy, moves, music
-const DeepThought = new Brain('random', [], {});
+const DeepThought = new Brain('oneRandom', [], {});
 DeepThought.test('World');
 
 // drone 1: Mambo_612553
