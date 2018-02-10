@@ -8,6 +8,7 @@ const Brain = require('./brain');
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
 const music = require('./music');
+console.log(music);
 
 // Arg handling
 /*
@@ -22,7 +23,7 @@ const moves = require('./moves')(rollingSpider);
 
 // TODO: let brain choose move based on music
 //       Inputs to brain: moves, music
-const DeepThought = new Brain(moves, music);
+const DeepThought = new Brain(moves, music.stream);
 //DeepThought.test('World');
 
 
@@ -49,6 +50,7 @@ rollingSpider.connect(() => {
             delay: 1000,
             task: () => {
                 temporal.clear();
+                music.playerHandler.kill();
                 process.exit(0);
             }
         }
