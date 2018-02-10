@@ -6,4 +6,4 @@ Uses the Parrot Mambo.
 `npm install`
 
 ## Running the code
-`node drone.js`
+`node drone.js <DRONE-ID>`

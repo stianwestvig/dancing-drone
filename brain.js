@@ -9,29 +9,29 @@ class Brain {
      * @param {Object} music                    Music stream
      */
 
-    constructor(strategy, moves, music) {
-        this.strategy = strategy;
+    constructor(moves, music) {
         this.moves = moves;
         this.music = music;
+        this.result = [];
     }
 
-    test(arg) {
-        this['greet'](arg);
+    strategize(strategy) {
+        console.log('Running strategy' + strategy);
+        if (!!this[strategy]) this.result = this[strategy](''); else throw new Error(strategy + ': Not a valid strategy.');
     }
 
-    greet(name='World') {
-        console.log('Hello, ' + name);
-        throw new Error("Die for deubg reasons...");
+    answer() {
+        return this.result;
     }
 
     /*
-            STRAGEGIES BEGIN HERE
+            STRAGEGIES
      */
 
     randomOne() {
         /*
             Returns one random move from the list of moves.
-         */
+        */
         return this.moves[Math.floor(Math.random()*this.moves.length)];
     }
 
@@ -49,6 +49,17 @@ class Brain {
         });
     }
 
+    /*
+            TEST/DEUG
+     */
+    test(arg) {
+        this['greet'](arg);
+    }
+
+    greet(name='World') {
+        console.log('Hello, ' + name);
+        //throw new Error("Die for deug reasons...");
+    }
 }
 
 module.exports = Brain;
