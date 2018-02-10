@@ -17,7 +17,7 @@ function landing(drone) {
 
 function moveLeft(drone) {
     return {
-        delay: 2000,
+        delay: 1000,
         task: () => {
             drone.left({steps: 5});
             drone.flatTrim();
@@ -27,7 +27,7 @@ function moveLeft(drone) {
 
 function moveRight(drone) {
     return {
-        delay: 2000,
+        delay: 1000,
         task: () => {
             drone.right({steps: 5});
             drone.flatTrim();
@@ -37,7 +37,7 @@ function moveRight(drone) {
 
 function frontFlip(drone) {
     return {
-        delay: 5000,
+        delay: 1000,
         task: () => {
             drone.frontFlip({steps: 5});
             drone.flatTrim();
@@ -45,58 +45,98 @@ function frontFlip(drone) {
     }
 };
 
-function upAndDown(drone) {
-    return [
-        {
-            delay: 1000,
-            task: () => {
-                drone.takeOff();
-                drone.flatTrim();
-            }
-        },
-        {
-            delay: 1000,
-            task: () => drone.land()
+function spin(drone) {
+    return {
+        delay: 1000,
+        task: () => {
+            drone.clockwise({speed: 200, steps: 100});
+            drone.flatTrim();
         }
-    ]
-}
+    }
+};
 
-function leftToRight(drone) {
-    return [
-        {
-            delay: 1000,
-            task: () => {
-                drone.takeOff();
-                drone.flatTrim();
-            }
-        },
-        {
-            delay: 2000,
-            task: () => {
-                drone.left({steps: 5});
-                drone.flatTrim();
-            }
-        },
-        {
-            delay: 2000,
-            task: () => {
-                drone.right({steps: 5});
-                drone.flatTrim();
-            }
-        },
-        {
-            delay: 1000,
-            task: () => drone.land()
+function forward(drone) {
+    return {
+        delay: 1000,
+        task: () => {
+            drone.forward({steps: 5});
+            drone.flatTrim();
         }
-    ]
-}
+    }
+};
+
+function backward(drone) {
+    return {
+        delay: 1000,
+        task: () => {
+            drone.backward({steps: 5});
+            drone.flatTrim();
+        }
+    }
+};
+
+function up(drone) {
+    return {
+        delay: 1000,
+        task: () => {
+            drone.up({speed: 200, steps: 100});
+            drone.flatTrim();
+        }
+    }
+};
+
+function down(drone) {
+    return {
+        delay: 1000,
+        task: () => {
+            drone.down({speed: 200, steps: 100});
+            drone.flatTrim();
+        }
+    }
+};
 
 
 function getMoves (drone) {
-    return [{
-        meta: {},
-        instructions: [takeOff(drone), moveLeft(drone), moveRight(drone), frontFlip(drone), landing(drone)]
-    }];
+    return [
+        {
+            meta: { name: 'swagger'},
+            instructions: [
+                takeOff(drone),
+                moveLeft(drone),
+                moveRight(drone),
+                moveLeft(drone),
+                moveRight(drone),
+                spin(drone),
+                landing(drone)]
+        },
+        {
+            meta: { name: 'flip'},
+            instructions: [
+                takeOff(drone),
+                moveLeft(drone),
+                moveRight(drone),
+                frontFlip(drone),
+                landing(drone)
+            ]
+        },
+        {
+            meta: { name: 'rap'},
+            instructions: [
+                takeOff(drone),
+                moveLeft(drone),
+                moveRight(drone),
+                moveLeft(drone),
+                moveRight(drone),
+                up(drone),
+                down(drone),
+                up(drone),
+                down(drone),
+                up(drone),
+                down(drone),
+                spin(drone),
+                landing(drone)]
+        }
+    ];
 }
 
 
