@@ -16,6 +16,7 @@ class Brain {
     }
 
     randomStrategy() {
+        shuffle(this.moves);
         return this.moves.reduce((promiseChain, currentMove) => {
             return promiseChain.then(chainResults =>
                 currentMove.then(currentResult =>
