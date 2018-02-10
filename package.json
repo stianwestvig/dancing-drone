@@ -1,0 +1,19 @@
+{
+  "name": "dancing-drone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stianwestvig/dancing-drone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stianwestvig/dancing-drone/issues"
+  },
+  "homepage": "https://github.com/stianwestvig/dancing-drone#readme"
+}
