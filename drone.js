@@ -7,7 +7,7 @@ const Brain = require('./brain');
 
 const RollingSpider = require('rolling-spider');
 const temporal = require('temporal');
-const music = {};
+const music = require('./music');
 
 // Arg handling
 /*

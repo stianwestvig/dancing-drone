@@ -2,6 +2,12 @@
 const fs = require('fs');
 const Analyser = require('audio-analyser');
 
+// play the music
+const player = require('play-sound')(opts = {});
+player.play('./flying.mp3', function(err){
+  if (err) throw err
+})
+
 const readStream = fs.createReadStream('./flying.mp3');
 const music = new Analyser({
 	// Magnitude diapasone, in dB
@@ -35,15 +41,13 @@ const music = new Analyser({
 	}
 });
 
-readStream.on('data', (chunk) => {
-  // console.log(`Received ${chunk.length} bytes of data.`);
-  // music.getByteTimeDomainData(dataArray);
-});
+readStream.on('data', (chunk) => { });
 
 music.on('data', (chunk) => {
   const floatFreq = music.getFloatFrequencyData(new Float32Array(music.fftSize));
+  const waveform = music.getFloatTimeDomainData(new Float32Array(music.fftSize));
   console.log('frequency', floatFreq);
-  // console.log('this.fftSize', this.fftSize);
+  console.log('waveform', waveform);
 })
 
 return readStream.pipe(music);
