@@ -136,7 +136,7 @@ function getMoves (drone, quarter) {
               // first
               forward(drone, quarter),
               backward(drone, quarter),
-              backward(drone, quarter),
+              forward(drone, quarter),
               backward(drone, quarter),
 
               moveLeft(drone, quarter),
@@ -159,7 +159,7 @@ function getMoves (drone, quarter) {
               // second
               forward(drone, quarter),
               backward(drone, quarter),
-              backward(drone, quarter),
+              forward(drone, quarter),
               backward(drone, quarter),
 
               moveLeft(drone, quarter),
@@ -182,7 +182,7 @@ function getMoves (drone, quarter) {
               // third
               forward(drone, quarter),
               backward(drone, quarter),
-              backward(drone, quarter),
+              forward(drone, quarter),
               backward(drone, quarter),
 
               moveLeft(drone, quarter),
